@@ -1,0 +1,65 @@
+/* site.css */
+
+/* Globalni stilovi */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Navigacija */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    transition: color 0.3s;
+}
+
+    .nav-link:hover {
+        color: #adb5bd !important;
+    }
+
+/* Glavni sadržaj */
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Kartu za sadržaj */
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responzivni prilagodbe */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+    }
+}
+
+/* Aktivna stranica u navigaciji */
+.nav-link.active {
+    color: #0d6efd !important;
+}
+
+/* Stilizacija footer-a */
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+}

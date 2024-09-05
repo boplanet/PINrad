@@ -1,0 +1,37 @@
+﻿@model PINrad.Models.CustomUser
+
+@{
+    ViewData["Title"] = "Izvještaj za korisnika";
+}
+
+<h2>Izvještaj za @Model.FullName</h2>
+
+<h3>Osnovne informacije</h3>
+<p><strong>Ime:</strong> @Model.FullName</p>
+<p><strong>Odjel:</strong> @Model.Department</p>
+<p><strong>Email:</strong> @Model.Email</p>
+
+<h3>Dodijeljena imovina</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Inventarni Broj</th>
+            <th>Naziv</th>
+            <th>Nabavna Vrijednost</th>
+            <th>Datum Nabave</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asset in Model.AssignedAssets)
+        {
+            <tr>
+                <td>@asset.InventarniBroj</td>
+                <td>@asset.Opis</td>
+                <td>@asset.KupovnaVrijednost</td>
+                <td>@asset.DatumKupnje.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="ExportToPdf" asp-route-id="@Model.CustomUserId" class="btn btn-primary">Izvezi u PDF</a>

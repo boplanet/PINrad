@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PINrad.Models.Asset>
+
+@{
+    ViewData["Title"] = "Import/Export";
+}
+
+<h2>Import/Export Imovine</h2>
+
+<h3>Izvoz imovine u Excel</h3>
+<p>
+    <a asp-action="ExportAssets" class="btn btn-secondary">Izvezi u Excel</a>
+</p>
+
+<h3>Uvoz imovine iz Excel-a</h3>
+<form asp-action="ImportAssets" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+        <label for="file">Odaberite Excel datoteku:</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Uvezi</button>
+</form>

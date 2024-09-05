@@ -1,0 +1,65 @@
+﻿@model PINrad.Models.HomeIndexViewModel
+
+@{
+    ViewData["Title"] = "Početna";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Zadnji korisnici</h3>
+        @if (Model.LatestUsers != null && Model.LatestUsers.Any())
+        {
+            <ul class="list-group">
+                @foreach (var user in Model.LatestUsers)
+                {
+                    <li class="list-group-item">
+                        @user.PunoIme
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Nema novih korisnika.</p>
+        }
+    </div>
+
+    <div class="col-md-4">
+        <h3>Zadnja imovina</h3>
+        @if (Model.LatestAssets != null && Model.LatestAssets.Any())
+        {
+            <ul class="list-group">
+                @foreach (var asset in Model.LatestAssets)
+                {
+                    <li class="list-group-item">
+                        @asset.Opis
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Nema nove imovine.</p>
+        }
+    </div>
+
+    <div class="col-md-4">
+        <h3>Zadnja zaduženja</h3>
+        @if (Model.LatestAssignments != null && Model.LatestAssignments.Any())
+        {
+            <ul class="list-group">
+                @foreach (var assignment in Model.LatestAssignments)
+                {
+                    <li class="list-group-item">
+                        @assignment.CustomUser?.FullName zadužen za @assignment.Asset?.Opis dana @assignment.AssignmentDate.ToShortDateString()
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Nema novih zaduženja.</p>
+        }
+
+    </div>
+</div>

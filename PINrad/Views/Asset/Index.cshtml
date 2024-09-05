@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PINrad.Models.Asset>
+
+@{
+    ViewData["Title"] = "Imovina";
+}
+
+<h2>Imovina</h2>
+
+<form asp-action="Index" method="get">
+    <p>
+        Ime ili Inventarni broj: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+        <input type="submit" value="Pretraži" class="btn btn-primary" />
+    </p>
+</form>
+
+<a asp-action="Create" class="btn btn-success">Dodaj novu imovinu</a>
+<a asp-action="ExportAssets" class="btn btn-secondary">Izvezi imovinu u Excel</a>
+
+<form asp-action="ImportAssets" enctype="multipart/form-data" method="post">
+    <input type="file" name="file" />
+    <input type="submit" value="Uvezi imovinu iz Excela" class="btn btn-secondary" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Inventarni Broj</th>
+            <th>Naziv</th>
+            <th>Nabavna Vrijednost</th>
+            <th>Datum Nabave</th>
+            <th>Korisnik</th>
+            <th>Akcije</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.InventarniBroj</td>
+                <td>@item.Opis</td>
+                <td>@item.KupovnaVrijednost</td>
+                <td>@item.DatumKupnje.ToShortDateString()</td>
+                <td>@item.AssignedUser?.FullName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AssetId" class="btn btn-warning">Uredi</a>
+                    <a asp-action="Delete" asp-route-id="@item.AssetId" class="btn btn-danger">Obriši</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

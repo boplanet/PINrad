@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Odjava";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h2>Uspješno ste odjavljeni.</h2>
+    <p>Bit ćete preusmjereni na stranicu za prijavu za <span id="countdown">5</span> sekundi...</p>
+    <p>Ako preusmjeravanje ne radi, kliknite <a asp-action="Login" asp-controller="Account">ovdje</a>.</p>
+</div>
+
+<script>
+    // Automatsko preusmjeravanje na stranicu za prijavu nakon 5 sekundi
+    var countdownElement = document.getElementById("countdown");
+    var countdown = 5; // Vrijeme u sekundama
+
+    var interval = setInterval(function () {
+        countdown--;
+        countdownElement.textContent = countdown;
+
+        if (countdown <= 0) {
+            clearInterval(interval);
+            window.location.href = '@Url.Action("Login", "Account")';
+        }
+    }, 1000);
+</script>

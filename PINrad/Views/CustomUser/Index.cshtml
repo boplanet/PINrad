@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PINrad.Models.CustomUser>
+
+@{
+    ViewData["Title"] = "Korisnici";
+}
+
+<h2>Korisnici</h2>
+
+<form asp-action="Index" method="get">
+    <p>
+        Ime ili Email: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+        <input type="submit" value="Pretraži" class="btn btn-primary" />
+    </p>
+</form>
+
+<a asp-action="Create" class="btn btn-success">Dodaj novog korisnika</a>
+<a asp-action="ExportUsers" class="btn btn-secondary">Izvezi korisnike u Excel</a>
+
+<form asp-action="ImportUsers" enctype="multipart/form-data" method="post">
+    <input type="file" name="file" />
+    <input type="submit" value="Uvezi korisnike iz Excela" class="btn btn-secondary" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Odjel</th>
+            <th>Email</th>
+            <th>Akcije</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.Department</td>
+                <td>@item.Email</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CustomUserId" class="btn btn-warning">Uredi</a>
+                    <a asp-action="Delete" asp-route-id="@item.CustomUserId" class="btn btn-danger">Obriši</a>
+                    <a asp-action="Report" asp-route-id="@item.CustomUserId" class="btn btn-info">Izvještaj</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
